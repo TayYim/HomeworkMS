@@ -1,7 +1,8 @@
 <template>
     <div>
+        <span v-show="isAuthorized">Y </span>
+        <span v-show="!isAuthorized">N </span>
         <button @click="handleClick()">{{ButtonName}}</button>
-        <p v-show="isAuthorized">ok</p>
     </div>
 </template>
 
