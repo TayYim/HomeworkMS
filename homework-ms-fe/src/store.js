@@ -11,7 +11,8 @@ export default new Vuex.Store({
       UID: "",
       name: "",
       RIDs: [],
-      PIDs: []
+      PIDs: [],
+      roleNames: []
     }
   },
   mutations: {
@@ -26,6 +27,13 @@ export default new Vuex.Store({
       state.user.RIDs = state.RBAC.UA.filter(v => v.UID === UID).map(
         v => v.RID
       );
+      // 获取用户对应的角色名
+      state.user.roleNames = [];
+      state.user.RIDs.forEach(rid => {
+        state.user.roleNames.push(
+          state.RBAC.Role.filter(v => v.RID === rid).map(v => v.name)[0]
+        );
+      });
       // 获取每一个角色被授权的的PID
       state.user.PIDs = [];
       state.user.RIDs.forEach(rid => {
@@ -34,11 +42,9 @@ export default new Vuex.Store({
         );
       });
       // PIDs数组去重
-      state.user.PIDs = state.user.PIDs.filter(
-        function(item, index, array){
-          return array.indexOf(item) === index;
-        }
-      )
+      state.user.PIDs = state.user.PIDs.filter(function(item, index, array) {
+        return array.indexOf(item) === index;
+      });
     }
   },
   actions: {}
