@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <h1>RABC0 demo</h1>
+    <h3>by Tay 2018</h3>
     <div>
       选择用户:
       <select @change="onUserChange" v-model="selectedUsername" id="username">
