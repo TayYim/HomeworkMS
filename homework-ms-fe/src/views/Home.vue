@@ -1,6 +1,12 @@
 <template>
   <div class="home">
     <h1>RABC demo</h1>
+    <select @change="onUserChange" v-model="selectedUsername" id="username">
+      <option v-for="user in RBAC.User" :key="user.UID" :value="user.UID">
+        {{user.name}}
+      </option>
+    </select>
+    <h2>我是{{user.name}}，角色为{{user.roleNames}}</h2>
     <function-button button-name="作业提交" p-i-d-required="1"></function-button>
     <function-button button-name="作业点评" p-i-d-required="2"></function-button>
     <function-button button-name="成绩统计" p-i-d-required="3"></function-button>
@@ -9,7 +15,7 @@
 </template>
 
 <script>
-// @ is an alias to /src
+import { mapState } from "vuex";
 import FunctionButton from '@/components/FunctionButton.vue'
 
 export default {
@@ -19,7 +25,23 @@ export default {
   },
   mounted() {
     console.log('mounted');
-    this.$store.commit('setUser','2001')
+    this.$store.commit('setUser','1001')
   },
+  computed:{
+    ...mapState([
+      'user',
+      'RBAC'
+    ])
+  },
+  data(){
+    return {
+      selectedUsername: '二狗子'
+    }
+  },
+  methods:{
+    onUserChange(event){
+      console.log(event.target.value)
+    }
+  }
 }
 </script>
