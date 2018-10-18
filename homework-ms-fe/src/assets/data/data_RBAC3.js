@@ -3,7 +3,8 @@ const UA = [
   { UAID: "2", UID: "2001", RID: "2" },
   { UAID: "3", UID: "3001", RID: "3" },
   { UAID: "4", UID: "3002", RID: "2" },
-  { UAID: "5", UID: "3002", RID: "3" }
+  { UAID: "5", UID: "3002", RID: "3" },
+  { UAID: "6", UID: "1002", RID: "5" },
 ];
 
 const PA = [
@@ -18,6 +19,7 @@ const PA = [
 
 const User = [
   { UID: "1001", name: "二狗子" },
+  { UID: "1002", name: "王二麻子" },
   { UID: "2001", name: "饶老师" },
   { UID: "3001", name: "嗷嗷嗷" },
   { UID: "3002", name: "王树国" }
