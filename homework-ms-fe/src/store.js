@@ -12,7 +12,8 @@ export default new Vuex.Store({
       name: "",
       RIDs: [],
       PIDs: [],
-      roleNames: []
+      roleNames: [],
+      activatedRoleNo: 0
     }
   },
   mutations: {
@@ -45,6 +46,11 @@ export default new Vuex.Store({
       state.user.PIDs = state.user.PIDs.filter(function(item, index, array) {
         return array.indexOf(item) === index;
       });
+      // 默认激活第一个角色
+      state.user.activatedRoleNo = 0;
+    },
+    setActivatedRoleNo(state, index){
+      state.user.activatedRoleNo = index;
     }
   },
   actions: {}
