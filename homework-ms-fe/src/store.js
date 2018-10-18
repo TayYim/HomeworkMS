@@ -66,7 +66,7 @@ export default new Vuex.Store({
       currUser.PIDs = [];
 
       // 递归加入父角色的权限
-      while (rid !== "null" && typeof currRID !== "undefined") {
+      while (rid !== "null" && typeof(rid) !== "undefined") {
         // console.log(rid); //debug
         // 加入该角色的权限
         currUser.PIDs.push(
