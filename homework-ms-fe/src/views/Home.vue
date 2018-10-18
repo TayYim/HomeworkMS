@@ -52,7 +52,7 @@ export default {
   methods: {
     onUserChange(event) {
       this.$store.commit("setUser", event.target.value);
-      this.selectedRole = 0; //恢复默认角色
+      this.selectedRole = 0; //恢复默认选项为第一个角色
     },
     onRolesChange(event) {
       // 提交role的index
