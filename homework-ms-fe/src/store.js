@@ -19,7 +19,7 @@ export default new Vuex.Store({
   mutations: {
     /**
      * 设置当前用户信息
-     * @param {*} state 
+     * @param {*} state
      * @param {String} UID Uesr ID
      */
     setUser(state, UID) {
@@ -45,7 +45,7 @@ export default new Vuex.Store({
 
     /**
      * 设置当前激活角色
-     * @param {*} state 
+     * @param {*} state
      * @param {int} index the index of the selected role
      */
     setActivatedRoleNo(state, index) {
@@ -57,15 +57,24 @@ export default new Vuex.Store({
 
     /**
      * 设置当前激活角色所拥有的权限
-     * @param {*} state 
+     * based on RABC3
+     * @param {*} state
      * @param {String} rid Role ID
      */
     setCurrentPIDs(state, rid) {
       const currUser = state.user;
       currUser.PIDs = [];
-      currUser.PIDs.push(
-        ...state.RBAC.PA.filter(v => v.RID === rid).map(v => v.PID)
-      );
+
+      while (rid !== "null") {
+        console.log(rid);
+        
+        currUser.PIDs.push(
+          ...state.RBAC.PA.filter(v => v.RID === rid).map(v => v.PID)
+        );
+        rid = state.RBAC.Role.filter(v => v.RID === rid).map(v => v.PRID)[0];
+      }
+
+      console.log(currUser.PIDs);
     }
   },
   actions: {}
