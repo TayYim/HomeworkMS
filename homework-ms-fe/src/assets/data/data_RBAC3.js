@@ -4,7 +4,8 @@ const UA = [
   { UAID: "3", UID: "3001", RID: "3" },
   { UAID: "4", UID: "3002", RID: "2" },
   { UAID: "5", UID: "3002", RID: "3" },
-  { UAID: "6", UID: "1002", RID: "5" },
+  { UAID: "6", UID: "3002", RID: "1" },
+  { UAID: "7", UID: "1002", RID: "5" },
 ];
 
 const PA = [
