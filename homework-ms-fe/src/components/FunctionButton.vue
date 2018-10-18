@@ -31,6 +31,8 @@ export default {
       let currTime = new Date().toLocaleString();
       let log =
         this.user.name +
+        " 作为 " +
+        this.user.roleNames[this.user.activatedRoleNo] +
         " 使用权限 " +
         this.PIDRequired +
         " 进行 " +
@@ -38,9 +40,9 @@ export default {
         " 操作";
 
       if (isAuthorized) {
-        log = "[" + currTime + "]允许了" + log;
+        log = "[" + currTime + "]允许了 " + log;
       } else {
-        log = "[" + currTime + "]拒绝了" + log;
+        log = "[" + currTime + "]拒绝了 " + log;
       }
 
       this.$store.commit("addLog", log);
