@@ -86,7 +86,7 @@ export default new Vuex.Store({
 
       let PRoleNames = "";
 
-      // 赋值为夫角色的RID
+      // 赋值为父角色的RID
       currRID = state.RBAC.Role.filter(v => v.RID === currRID).map(
         v => v.PRID
       )[0];
