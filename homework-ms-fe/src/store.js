@@ -66,7 +66,7 @@ export default new Vuex.Store({
       currUser.PIDs = [];
 
       // 递归加入父角色的权限
-      while (rid !== "null") {
+      while (rid !== "null" && typeof currRID !== "undefined") {
         // console.log(rid); //debug
         // 加入该角色的权限
         currUser.PIDs.push(
@@ -78,5 +78,31 @@ export default new Vuex.Store({
       // console.log(currUser.PIDs); //debug
     }
   },
-  actions: {}
+  actions: {},
+  getters: {
+    pRoleNames(state) {
+      const currUser = state.user;
+      let currRID = currUser.RIDs[currUser.activatedRoleNo];
+
+      let PRoleNames = "";
+
+      // 赋值为夫角色的RID
+      currRID = state.RBAC.Role.filter(v => v.RID === currRID).map(
+        v => v.PRID
+      )[0];
+
+      // 加上undefined的判断，否则在一开始未加载时会陷入死循环
+      while (currRID !== "null" && typeof currRID !== "undefined") {
+        let currRoleName = state.RBAC.Role.filter(v => v.RID === currRID).map(
+          v => v.name
+        )[0];
+        PRoleNames = PRoleNames + currRoleName + " ";
+        currRID = state.RBAC.Role.filter(v => v.RID === currRID).map(
+          v => v.PRID
+        )[0];
+      }
+
+      return PRoleNames;
+    }
+  }
 });

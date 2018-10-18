@@ -18,6 +18,7 @@
       </select>
     </div>
     <h2>我是{{user.name}}，角色为{{user.roleNames[user.activatedRoleNo]}}</h2>
+    <h3>我的父角色为:{{pRoleNames}}</h3>
     <div class="button-field">
       <function-button button-name="作业提交" p-i-d-required="1"></function-button>
       <function-button button-name="作业点评" p-i-d-required="2"></function-button>
@@ -38,10 +39,13 @@ export default {
     FunctionButton
   },
   mounted() {
-    console.log("mounted");
+    // 设置初始默认用户
     this.$store.commit("setUser", "1001");
   },
   computed: {
+    pRoleNames() {
+      return this.$store.getters.pRoleNames;
+    },
     ...mapState(["user", "RBAC"])
   },
   data() {
