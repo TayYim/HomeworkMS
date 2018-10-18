@@ -65,16 +65,17 @@ export default new Vuex.Store({
       const currUser = state.user;
       currUser.PIDs = [];
 
+      // 递归加入父角色的权限
       while (rid !== "null") {
         console.log(rid);
-        
+        // 加入该角色的权限
         currUser.PIDs.push(
           ...state.RBAC.PA.filter(v => v.RID === rid).map(v => v.PID)
         );
+        // 返回的是数组，要取第一个
         rid = state.RBAC.Role.filter(v => v.RID === rid).map(v => v.PRID)[0];
       }
-
-      console.log(currUser.PIDs);
+      // console.log(currUser.PIDs); //debug
     }
   },
   actions: {}
