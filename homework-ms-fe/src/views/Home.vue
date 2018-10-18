@@ -26,17 +26,23 @@
       <function-button button-name="系统信息管理" p-i-d-required="4"></function-button>
       <function-button button-name="个人信息管理" p-i-d-required="5"></function-button>
     </div>
+    <div class="info-board">
+      <h4>系统日志：</h4>
+      <info-board></info-board>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
 import FunctionButton from "@/components/FunctionButton.vue";
+import InfoBoard from "@/components/InfoBoard.vue";
 
 export default {
   name: "home",
   components: {
-    FunctionButton
+    FunctionButton,
+    InfoBoard
   },
   mounted() {
     // 设置初始默认用户

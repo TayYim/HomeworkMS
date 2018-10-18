@@ -14,7 +14,8 @@ export default new Vuex.Store({
       PIDs: [],
       roleNames: [],
       activatedRoleNo: 0
-    }
+    },
+    logs: []
   },
   mutations: {
     /**
@@ -66,7 +67,7 @@ export default new Vuex.Store({
       currUser.PIDs = [];
 
       // 递归加入父角色的权限
-      while (rid !== "null" && typeof(rid) !== "undefined") {
+      while (rid !== "null" && typeof rid !== "undefined") {
         // console.log(rid); //debug
         // 加入该角色的权限
         currUser.PIDs.push(
@@ -76,6 +77,10 @@ export default new Vuex.Store({
         rid = state.RBAC.Role.filter(v => v.RID === rid).map(v => v.PRID)[0];
       }
       // console.log(currUser.PIDs); //debug
+    },
+
+    addLog(state, newLog) {
+      state.logs.push(newLog);      
     }
   },
   actions: {},

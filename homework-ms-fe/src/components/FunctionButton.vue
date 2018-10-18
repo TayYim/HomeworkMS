@@ -20,11 +20,11 @@ export default {
       if (this.isAuthorized) {
         // 有权限，通过
         alert(this.user.name + "拥有权限，可以操作");
-        this.generateLog(true)
+        this.generateLog(true);
       } else {
         // 无权限，拒绝
         alert(this.user.name + "无权限进行此操作");
-        this.generateLog(false)
+        this.generateLog(false);
       }
     },
     generateLog(isAuthorized) {
@@ -43,7 +43,7 @@ export default {
         log = "[" + currTime + "]拒绝了" + log;
       }
 
-      console.log(log);
+      this.$store.commit("addLog", log);
     }
   },
   computed: {
