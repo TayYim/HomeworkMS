@@ -17,40 +17,55 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    /**
+     * 设置当前用户信息
+     * @param {*} state 
+     * @param {String} UID Uesr ID
+     */
     setUser(state, UID) {
+      const currUser = state.user;
       // 通过UID获取用户数据并设置
-      state.user.UID = UID;
+      currUser.UID = UID;
       // 获取用户名
-      state.user.name = state.RBAC.User.filter(v => v.UID === UID).map(
+      currUser.name = state.RBAC.User.filter(v => v.UID === UID).map(
         v => v.name
       )[0];
       // 获取用户对应的角色
-      state.user.RIDs = state.RBAC.UA.filter(v => v.UID === UID).map(
-        v => v.RID
-      );
+      currUser.RIDs = state.RBAC.UA.filter(v => v.UID === UID).map(v => v.RID);
       // 获取用户对应的角色名
-      state.user.roleNames = [];
-      state.user.RIDs.forEach(rid => {
-        state.user.roleNames.push(
+      currUser.roleNames = [];
+      currUser.RIDs.forEach(rid => {
+        currUser.roleNames.push(
           state.RBAC.Role.filter(v => v.RID === rid).map(v => v.name)[0]
         );
       });
-      // 获取每一个角色被授权的的PID
-      state.user.PIDs = [];
-      state.user.RIDs.forEach(rid => {
-        state.user.PIDs.push(
-          ...state.RBAC.PA.filter(v => v.RID === rid).map(v => v.PID)
-        );
-      });
-      // PIDs数组去重
-      state.user.PIDs = state.user.PIDs.filter(function(item, index, array) {
-        return array.indexOf(item) === index;
-      });
       // 默认激活第一个角色
-      state.user.activatedRoleNo = 0;
+      this.commit("setActivatedRoleNo", 0);
     },
-    setActivatedRoleNo(state, index){
-      state.user.activatedRoleNo = index;
+
+    /**
+     * 设置当前激活角色
+     * @param {*} state 
+     * @param {int} index the index of the selected role
+     */
+    setActivatedRoleNo(state, index) {
+      const currUser = state.user;
+      currUser.activatedRoleNo = index;
+      // 更新当前角色被授权的PID
+      this.commit("setCurrentPIDs", currUser.RIDs[index]);
+    },
+
+    /**
+     * 设置当前激活角色所拥有的权限
+     * @param {*} state 
+     * @param {String} rid Role ID
+     */
+    setCurrentPIDs(state, rid) {
+      const currUser = state.user;
+      currUser.PIDs = [];
+      currUser.PIDs.push(
+        ...state.RBAC.PA.filter(v => v.RID === rid).map(v => v.PID)
+      );
     }
   },
   actions: {}
