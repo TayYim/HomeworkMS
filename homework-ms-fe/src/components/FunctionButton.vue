@@ -20,10 +20,30 @@ export default {
       if (this.isAuthorized) {
         // 有权限，通过
         alert(this.user.name + "拥有权限，可以操作");
+        this.generateLog(true)
       } else {
         // 无权限，拒绝
         alert(this.user.name + "无权限进行此操作");
+        this.generateLog(false)
       }
+    },
+    generateLog(isAuthorized) {
+      let currTime = new Date().toLocaleString();
+      let log =
+        this.user.name +
+        " 使用权限 " +
+        this.PIDRequired +
+        " 进行 " +
+        this.ButtonName +
+        " 操作";
+
+      if (isAuthorized) {
+        log = "[" + currTime + "]允许了" + log;
+      } else {
+        log = "[" + currTime + "]拒绝了" + log;
+      }
+
+      console.log(log);
     }
   },
   computed: {
