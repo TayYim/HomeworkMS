@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import RBAC from "@/assets/data/data_RBAC0.js";
+import RBAC from "@/assets/data/data_RBAC3.js";
 
 Vue.use(Vuex);
 

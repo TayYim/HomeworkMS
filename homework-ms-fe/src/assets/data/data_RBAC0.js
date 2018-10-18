@@ -28,25 +28,23 @@ const Role = [
 ];
 
 const Permission = [
-  { PID: "1", operationID: "1", resourceID: "1" },
+  { PID: "1", operation: "1", resourceID: "1" },
   { PID: "2", operationID: "1", resourceID: "2" },
   { PID: "3", operationID: "2", resourceID: "3" },
-  { PID: "4", operationID: "5", resourceID: "4" }
+  { PID: "4", operationID: "3", resourceID: "4" },
 ];
 
 const Operation = [
-  { operationID: "1", name: "create" },
+  { operationID: "1", name: "upload" },
   { operationID: "2", name: "retrive" },
-  { operationID: "3", name: "update" },
-  { operationID: "4", name: "delete" },
-  { operationID: "5", name: "all" }
+  { operationID: "3", name: "manage" },
 ];
 
 const Resource = [
   { resourceID: "1", name: "homework" },
   { resourceID: "2", name: "comment" },
   { resourceID: "3", name: "grade statistics" },
-  { resourceID: "4", name: "system" }
+  { resourceID: "4", name: "system info" },
 ];
 
 export default {
