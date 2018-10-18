@@ -12,7 +12,8 @@ const PA = [
   { PAID: "3", PID: "3", RID: "2" },
   { PAID: "4", PID: "3", RID: "3" },
   { PAID: "5", PID: "4", RID: "3" },
-  { PAID: "6", PID: "5", RID: "4" }
+  { PAID: "6", PID: "5", RID: "4" },
+  { PAID: "7", PID: "3", RID: "5" },
 ];
 
 const User = [
@@ -26,7 +27,8 @@ const Role = [
   { RID: "1", name: "学生", PRID: "4" },
   { RID: "2", name: "教师", PRID: "4" },
   { RID: "3", name: "管理员", PRID: "4" },
-  { RID: "4", name: "系统成员", PRID: "null" }
+  { RID: "4", name: "系统成员", PRID: "null" },
+  { RID: "5", name: "班委", PRID: "1" },
 ];
 
 const Permission = [
