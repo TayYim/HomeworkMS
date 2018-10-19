@@ -79,6 +79,11 @@ export default new Vuex.Store({
       // console.log(currUser.PIDs); //debug
     },
 
+    /**
+     * add a log item to logs
+     * @param {*} state 
+     * @param {String} newLog 
+     */
     addLog(state, newLog) {
       state.logs.push(newLog);      
     }

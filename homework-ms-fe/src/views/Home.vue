@@ -3,7 +3,7 @@
     <h1>RABC-3 Demo</h1>
     <div>
       选择用户:
-      <select @change="onUserChange" v-model="selectedUser" id="username">
+      <select @change="onUserChangeListener" v-model="selectedUser" id="username">
         <option v-for="user in RBAC.User" :key="user.UID" :value="user.UID">
           {{user.name}}
         </option>
@@ -11,7 +11,7 @@
     </div>
     <div>
       选择角色:
-      <select @change="onRolesChange" v-model="selectedRole" id="rolename">
+      <select @change="onRolesChangeListener" v-model="selectedRole" id="rolename">
         <option v-for="(role,index) in user.roleNames" :key="role" :value="index">
           {{role}}
         </option>
@@ -61,11 +61,11 @@ export default {
     };
   },
   methods: {
-    onUserChange(event) {
+    onUserChangeListener(event) {
       this.$store.commit("setUser", event.target.value);
       this.selectedRole = 0; //恢复默认选项为第一个角色
     },
-    onRolesChange(event) {
+    onRolesChangeListener(event) {
       // 提交role的index
       this.$store.commit("setActivatedRoleNo", event.target.value);
     }

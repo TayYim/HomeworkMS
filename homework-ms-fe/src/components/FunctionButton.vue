@@ -2,7 +2,7 @@
     <div>
         <span v-show="isAuthorized">Y </span>
         <span v-show="!isAuthorized">N </span>
-        <button @click="handleClick()">{{ButtonName}}</button>
+        <button @click="onClickListener()">{{ButtonName}}</button>
     </div>
 </template>
 
@@ -13,10 +13,10 @@ export default {
   props: ["ButtonName", "PIDRequired"],
   methods: {
     /**
-     * handleClick()
+     * onClickListener()
      * 本按钮组件的点击事件的事件监听器
      */
-    handleClick() {
+    onClickListener() {
       if (this.isAuthorized) {
         // 有权限，通过
         alert(this.user.name + "拥有权限，可以操作");
@@ -27,6 +27,10 @@ export default {
         this.generateLog(false);
       }
     },
+    /**
+     * generateLog(isAuthorized)
+     * 生成日志条目并提交
+     */
     generateLog(isAuthorized) {
       let currTime = new Date().toLocaleString();
       let log =
